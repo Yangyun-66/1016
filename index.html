@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>個人行程與任務管理系統</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#main" aria-label="個人行程與任務管理系統首頁">
+        <span class="brand-mark" aria-hidden="true">日</span>
+        <span>我的日常</span>
+      </a>
+      <span class="offline-note"><span class="status-dot" aria-hidden="true"></span>個人工作空間</span>
+    </header>
+    <main id="main">
+      <section class="welcome" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">PERSONAL PLANNER</p>
+          <h1 id="page-title">個人行程與任務管理系統</h1>
+          <p class="welcome-copy">整理今天的步調，讓每件重要的事都有自己的位置。</p>
+        </div>
+        <div class="date-card" aria-label="今天的日期">
+          <span class="date-label">今天</span>
+          <time id="today-date">載入日期中…</time>
+        </div>
+      </section>
+      <section class="overview-grid" aria-label="今日摘要">
+        <article class="overview-card">
+          <span class="overview-icon calendar-icon" aria-hidden="true">▦</span>
+          <div><span class="overview-label">固定行程</span><strong id="schedule-count">3</strong></div>
+          <span class="overview-caption">已安排</span>
+        </article>
+        <article class="overview-card">
+          <span class="overview-icon task-icon" aria-hidden="true">✓</span>
+          <div><span class="overview-label">待辦事項</span><strong id="task-count">3</strong></div>
+          <span class="overview-caption">持續前進</span>
+        </article>
+        <article class="overview-card focus-card">
+          <span class="overview-icon focus-icon" aria-hidden="true">✦</span>
+          <div><span class="overview-label">今日提醒</span><strong class="focus-text">一步一步來</strong></div>
+          <span class="overview-caption">保持好節奏</span>
+        </article>
+      </section>
+      <div class="content-grid">
+        <section class="panel schedule-panel" aria-labelledby="schedule-title">
+          <div class="section-heading">
+            <div><p class="eyebrow">YOUR DAY</p><h2 id="schedule-title">固定行程</h2></div>
+            <span class="section-count" id="schedule-heading-count">3 項行程</span>
+          </div>
+          <div class="timeline" id="schedule-list" aria-live="polite">
+            <article class="schedule-item">
+              <time class="schedule-time" datetime="08:30">08:30</time><span class="timeline-marker" aria-hidden="true"></span>
+              <div class="schedule-details"><h3>晨間伸展與早餐</h3><p>為新的一天暖身</p></div><span class="schedule-tag tag-personal">生活</span><button class="delete-schedule-button" type="button" aria-label="刪除行程：晨間伸展與早餐">刪除</button>
+            </article>
+            <article class="schedule-item">
+              <time class="schedule-time" datetime="10:00">10:00</time><span class="timeline-marker" aria-hidden="true"></span>
+              <div class="schedule-details"><h3>專案進度討論</h3><p>確認本週工作安排</p></div><span class="schedule-tag tag-work">工作</span><button class="delete-schedule-button" type="button" aria-label="刪除行程：專案進度討論">刪除</button>
+            </article>
+            <article class="schedule-item">
+              <time class="schedule-time" datetime="18:30">18:30</time><span class="timeline-marker" aria-hidden="true"></span>
+              <div class="schedule-details"><h3>晚餐與家人相聚</h3><p>留一點時間給重要的人</p></div><span class="schedule-tag tag-personal">生活</span><button class="delete-schedule-button" type="button" aria-label="刪除行程：晚餐與家人相聚">刪除</button>
+            </article>
+          </div>
+        </section>
+        <section class="panel tasks-panel" aria-labelledby="tasks-title">
+          <div class="section-heading">
+            <div><p class="eyebrow">YOUR TASKS</p><h2 id="tasks-title">待辦事項</h2></div>
+            <span class="section-count">保持前進</span>
+          </div>
+          <ul class="task-list" id="task-list">
+            <li class="task-item"><span class="task-check" aria-hidden="true">○</span>
+              <div class="task-details"><h3>整理本週工作重點</h3><p>今天 · 工作</p></div><span class="task-status status-todo">未完成</span></li>
+            <li class="task-item"><span class="task-check is-progress" aria-hidden="true">◷</span>
+              <div class="task-details"><h3>完成提案簡報初稿</h3><p>今天 · 專案</p></div><span class="task-status status-progress">進行中</span></li>
+            <li class="task-item"><span class="task-check is-done" aria-hidden="true">✓</span>
+              <div class="task-details"><h3>回覆重要郵件</h3><p>今天 · 行政</p></div><span class="task-status status-done">已完成</span></li>
+          </ul>
+        </section>
+      </div>
+      <section class="panel add-panel" aria-labelledby="add-title">
+        <div class="section-heading add-heading">
+          <div><p class="eyebrow">MAKE TIME FOR IT</p><h2 id="add-title">新增行程</h2>
+            <p class="form-intro">把接下來的重要安排記下來。</p></div>
+          <span class="add-decoration" aria-hidden="true">＋</span>
+        </div>
+        <form id="schedule-form" class="schedule-form">
+          <div class="form-field title-field"><label for="event-title">行程名稱</label>
+            <input id="event-title" name="title" type="text" placeholder="例如：團隊週會" maxlength="60" required></div>
+          <div class="form-field"><label for="event-time">時間</label>
+            <input id="event-time" name="time" type="time" required></div>
+          <div class="form-field"><label for="event-category">類別</label>
+            <select id="event-category" name="category"><option value="工作">工作</option><option value="生活">生活</option><option value="個人">個人</option></select></div>
+          <button class="submit-button" type="submit"><span aria-hidden="true">＋</span> 新增行程</button>
+        </form>
+        <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+      </section>
+      <footer class="page-footer">留一點空白，讓好事有機會發生。</footer>
+    </main>
+  </div>
+</body>
+</html>
